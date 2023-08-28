@@ -4,8 +4,7 @@ from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, schemas
 
 from simple_messager.api.auth.db import get_user_db
-from simple_messager.apps.users.schemas import UserRead
-from simple_messager.apps.users.models import User
+from simple_messager.api.auth.db import User
 import os
 from dotenv import load_dotenv
 
@@ -13,13 +12,12 @@ load_dotenv()
 
 SECRET = os.getenv("SECRET")
 
-
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     reset_password_token_secret = SECRET
     verification_token_secret = SECRET
 
-    # async def on_after_register(self, user: User, request: Optional[Request] = None):
-    #     print(f"User {user.id} has registered.")
+    async def on_after_register(self, user: User, request: Optional[Request] = None):
+        print(f"User {user.id} has registered.")
 
     async def create(
         self,
@@ -39,9 +37,8 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         password = user_dict.pop("password")
         user_dict["hashed_password"] = self.password_helper.hash(password)
         created_user = await self.user_db.create(user_dict)
-        created_user_read = UserRead(**created_user.__dict__)
         await self.on_after_register(created_user, request)
-        return created_user_read
+        return created_user
 
 async def get_user_manager(user_db=Depends(get_user_db)):
     yield UserManager(user_db)

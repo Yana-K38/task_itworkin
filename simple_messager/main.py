@@ -1,17 +1,14 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 
-# from src.api.users.router import router_user
-
-from fastapi_users import fastapi_users, FastAPIUsers
-
-from fastapi import FastAPI
-
-from simple_messager.api.auth.auth import auth_backend
-from simple_messager.apps.users.models import User
-from simple_messager.api.auth.manager import get_user_manager
+from simple_messager.api.auth.auth import auth_backend, current_user, fastapi_users
+from simple_messager.api.auth.db import User
 from simple_messager.apps.users.schemas import UserCreate, UserRead
 
+
+from simple_messager.apps.users.model import User
+
+from simple_messager.api.users.router import router_user
 
 
 app = FastAPI(
@@ -20,10 +17,6 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-fastapi_users = FastAPIUsers[User, int](
-    get_user_manager,
-    [auth_backend],
-)
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
@@ -37,7 +30,17 @@ app.include_router(
     tags=["auth"],
 )
 
+app.include_router(
+    fastapi_users.get_reset_password_router(),
+    prefix="/auth",
+    tags=["auth"],
+)
 
+app.include_router(router_user)
+
+@app.get("/protected-route")
+def protected_route(user: User = Depends(current_user)):
+    return f"Hello, {user.username}"
 
 
 if __name__ == "__main__":

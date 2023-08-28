@@ -1,11 +1,12 @@
-from fastapi_users.db import SQLAlchemyBaseUserTable
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, Boolean
 
+from sqlalchemy import Boolean, Column, Integer, String
+
 Base = declarative_base()
 
-
-class User(SQLAlchemyBaseUserTable[int], Base):
+class User(Base):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True)

@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
-from apps.users.models import Base
+from apps.users.model import Base
 
 from alembic import context
 
