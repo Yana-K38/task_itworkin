@@ -3,4 +3,4 @@
 
  uvicorn simple_messager.main:app --reload
 
-  alembic revision --autogenerate -m 'Promo'
+  alembic revision --autogenerate -m 'init'
