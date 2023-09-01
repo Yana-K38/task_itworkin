@@ -3,8 +3,8 @@ from typing import Optional
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, schemas
 
-from simple_messager.api.users.db import get_user_db
-from simple_messager.api.users.db import User
+from simple_messager.db import get_user_db
+from simple_messager.db import User
 import os
 from dotenv import load_dotenv
 

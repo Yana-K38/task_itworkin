@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI, Depends
 
 from simple_messager.api.users.auth import auth_backend, current_user, fastapi_users
-from simple_messager.api.users.db import User
+from simple_messager.db import User
 from simple_messager.apps.users.schemas import UserCreate, UserRead
 
 from simple_messager.api.users.router import router_user

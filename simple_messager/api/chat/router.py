@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from simple_messager.apps.chat.models import Message
 from simple_messager.apps.chat.schemas import MessagesSchemas
-from simple_messager.api.users.db import async_session_maker, get_async_session
+from simple_messager.db import async_session_maker, get_async_session
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 

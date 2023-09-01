@@ -6,11 +6,6 @@
 
 #!/bin/bash
 
-# Устанавливаем значение MIGRATIONS_DIR
-MIGRATIONS_DIR="/simple_massage/"
+alembic upgrade head
 
-# Применяем миграции с помощью Alembic
-alembic -c /sm_app/simple_messager/alembic.ini -x migrations_dir=$MIGRATIONS_DIR upgrade head
-
-# Запускаем Gunicorn
 gunicorn simple_messager.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000

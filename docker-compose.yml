@@ -1,11 +1,12 @@
-version: "3.10"
+version: "3.7"
 services:
+
   db:
     image: postgres:15
-    container_name: db
-    command: -p 5433
+    container_name: db_itworkin
+    command: -p 5435
     expose:
-      - 5433
+      - 5435
     env_file:
       - .env-non-dev
     volumes:
@@ -15,13 +16,11 @@ services:
   app:
     build:
       context: .
-    environment:
-      - PYTHONPATH=/sm_app/simple_messager
     env_file:
       - .env-non-dev
     container_name: sm_app
     ports:
-      - 8000:8000
+      - 80:8000
     command: ["/sm_app/.docker/app.sh"]
     depends_on:
       - db

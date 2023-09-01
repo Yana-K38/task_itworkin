@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from simple_messager.api.users.db import Base
+from simple_messager.db import Base
 
 
 class Message(Base):

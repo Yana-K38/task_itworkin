@@ -6,7 +6,7 @@ from typing import List
 
 from simple_messager.apps.users.model import User
 from simple_messager.apps.users.schemas import UserSchema, UserUpdate
-from simple_messager.api.users.db import get_async_session
+from simple_messager.db import get_async_session
 from sqlalchemy.future import select
 from sqlalchemy.engine.cursor import CursorResult
 
