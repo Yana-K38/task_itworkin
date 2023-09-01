@@ -1,3 +1,5 @@
+import re
+from sqlalchemy.orm import validates
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, Boolean
 
@@ -17,3 +19,11 @@ class User(Base):
     is_active: bool = Column(Boolean, default=True, nullable=False)
     is_superuser: bool = Column(Boolean, default=False, nullable=False)
     is_verified: bool = Column(Boolean, default=False, nullable=False)
+
+
+    @validates('phone_number')
+    def validate_phone_number(self, key, phone_number):
+        if re.match(r'^\+7\d{10}$', phone_number):
+            return phone_number
+        else:
+            raise ValueError("Номер телефона должен начинаться с '+7' и состоять из 11 цифр (включая код страны)")

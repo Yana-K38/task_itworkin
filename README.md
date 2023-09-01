@@ -19,7 +19,7 @@
 - FastAPI
 - Websockets
 - Docker
-- docker-compose
+- docker compose
 
 ### Инструкция по развертыванию проекта.
 
@@ -48,4 +48,4 @@ docker compose up -d --build
 ```
 ##### После запуска проекта, документация будет доступна по адресу:
 ```http://127.0.0.1:80/docs/```
-```http://127.0.0.1/chat/```
+```http://127.0.0.1:80/chat/```
