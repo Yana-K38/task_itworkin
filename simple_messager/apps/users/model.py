@@ -1,8 +1,8 @@
 import re
-from sqlalchemy.orm import validates
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer, Boolean
 
+from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import validates
 
 Base = declarative_base()
 

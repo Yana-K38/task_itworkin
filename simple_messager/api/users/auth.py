@@ -1,12 +1,12 @@
-from fastapi_users.authentication import CookieTransport, AuthenticationBackend
-from fastapi_users.authentication import JWTStrategy
-
-from fastapi_users import FastAPIUsers
-from simple_messager.apps.users.model import User
-from simple_messager.api.users.manager import get_user_manager
-
 import os
+
 from dotenv import load_dotenv
+from fastapi_users import FastAPIUsers
+from fastapi_users.authentication import (AuthenticationBackend,
+                                          CookieTransport, JWTStrategy)
+
+from simple_messager.api.users.manager import get_user_manager
+from simple_messager.apps.users.model import User
 
 cookie_transport = CookieTransport(cookie_max_age=3600)
 

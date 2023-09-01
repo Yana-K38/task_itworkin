@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends
+from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
 from sqlalchemy import insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 

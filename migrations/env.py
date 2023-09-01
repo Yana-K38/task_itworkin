@@ -1,12 +1,12 @@
+from logging.config import fileConfig
 import os
 import sys
 
-from logging.config import fileConfig
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from sqlalchemy import engine_from_config, pool
+
+from simple_messager.apps.chat.models import Message
 from simple_messager.config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 from simple_messager.db import Base
-from simple_messager.apps.chat.models import Message
 
 sys.path.append(os.path.join(sys.path[0], 'simple_messager'))
 

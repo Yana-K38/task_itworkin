@@ -1,16 +1,16 @@
-import uvicorn
-from fastapi import FastAPI, Depends
-
-from simple_messager.api.users.auth import auth_backend, current_user, fastapi_users
-from simple_messager.db import User
-from simple_messager.apps.users.schemas import UserCreate, UserRead
-
-from simple_messager.api.users.router import router_user
-from simple_messager.api.chat.router import router
 from pathlib import Path
+
+from fastapi import Depends, FastAPI
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
+import uvicorn
 
+from simple_messager.api.chat.router import router
+from simple_messager.api.users.auth import (auth_backend, current_user,
+                                            fastapi_users)
+from simple_messager.api.users.router import router_user
+from simple_messager.apps.users.schemas import UserCreate, UserRead
+from simple_messager.db import User
 
 app = FastAPI(
     title="Simple messenger APP",

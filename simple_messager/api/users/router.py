@@ -1,17 +1,15 @@
-from fastapi import APIRouter, status, Query
-
-from fastapi import Depends, HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
+from fastapi import APIRouter, Depends, HTTPException, Query, status
+from sqlalchemy.engine.cursor import CursorResult
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from sqlalchemy.sql import text
+
+from simple_messager.api.users.auth import current_user
 from simple_messager.apps.users.model import User
 from simple_messager.apps.users.schemas import UserSchema, UserUpdate
 from simple_messager.db import get_async_session
-from sqlalchemy.future import select
-from sqlalchemy.engine.cursor import CursorResult
-
-from simple_messager.api.users.auth import current_user
-from sqlalchemy.sql import text
 
 router_user = APIRouter(
     tags=["Users"],
